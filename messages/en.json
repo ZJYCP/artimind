@@ -1,0 +1,37 @@
+{
+  "common": {
+    "localeSwitch": "Language",
+    "en": "English",
+    "zh": "中文",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "toggle-theme": "Toggle Theme",
+    "logout": "Logout"
+  },
+  "HomePage": {
+    "title": "Revolutionize Your Search Experience",
+    "subTitle": "Harness the power of AI to find exactly what you're looking for.",
+    "searchPlaceholder": "What are you searching for?",
+    "benefitsTitle": "Benefits of AI Search",
+    "benefitsTitle_1": "Faster Results",
+    "benefitsTitle_2": "Higher Accuracy",
+    "benefitsTitle_3": "Personalized Insights",
+    "benefitsDesc_1": "AI-powered search engines deliver faster results, allowing you to find relevant information quickly and efficiently.",
+    "benefitsDesc_2": "AI algorithms provide higher accuracy in search results, ensuring that you receive accurate and up-to-date information.",
+    "benefitsDesc_3": "AI-powered search engines offer personalized insights, allowing you to receive tailored recommendations and suggestions based on your interests and preferences.",
+    "featureSection": {
+      "title": "Feature List",
+      "featureDescriptions": "Enhance your search experience with our cutting-edge features.",
+      "features": {
+        "naturalLanguageProcessing": "Natural Language Processing",
+        "multiLanguageSupport": "Multi-language Support",
+        "voiceSearchCapability": "Voice Search Capability",
+        "semanticUnderstanding": "Semantic Understanding",
+        "realTimeResults": "Real-time Results",
+        "advancedFilteringOptions": "Advanced Filtering Options"
+      }
+    }
+  },
+  "toggle-theme": "Toggle theme"
+}

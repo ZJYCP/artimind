@@ -1,0 +1,7 @@
+<svg
+  class="w-full min-w-[1920px] mb-[-1px] absolute bottom-0 left-1/2 -translate-x-1/2 object-cover lg:-bottom-8 md:-bottom-16"
+  viewBox="0 0 1920 180">
+  <path fill-rule="evenodd" clip-rule="evenodd"
+    d="M1920 180V0C1920 35.3462 1891.35 64 1856 64H1094.8C1067.05 64 1041.4 78.7233 1027.4 102.675C997.261 154.242 922.739 154.242 892.602 102.675C878.605 78.7233 852.947 64 825.205 64H64C28.6538 64 0 35.3462 0 0V180H1920Z"
+    fill="white"></path>
+</svg>
