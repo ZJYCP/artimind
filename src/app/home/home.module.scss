@@ -1,0 +1,20 @@
+.Mask_blueBanner__ofaSx {
+  &::before {
+    opacity: 0.8000000119;
+    background: radial-gradient(
+      50% 50% at 50% 50%,
+      #00eadc 0,
+      rgba(62, 220, 255, 0.24) 51.56%,
+      rgba(32, 215, 255, 0) 100%
+    );
+  }
+
+  &::after {
+    opacity: 0.8000000119;
+    background: radial-gradient(
+      50% 50% at 50% 50%,
+      #28a5ff 0,
+      transparent 100%
+    );
+  }
+}
