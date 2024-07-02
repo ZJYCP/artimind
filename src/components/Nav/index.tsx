@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import Logo from '@img/common/Logo.svg'
+import Logo from '@img/common/logo.svg'
 import { WechatWorkOutlined, CodepenOutlined } from '@ant-design/icons'
 
 const MenuItemClass = 'flex flex-col justify-center items-center my-4'
