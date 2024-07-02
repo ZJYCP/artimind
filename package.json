@@ -9,7 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.3.7",
     "@lobehub/ui": "^1.142.1",
+    "antd": "^5.18.3",
+    "antd-style": "^3.6.2",
+    "lucide-react": "^0.400.0",
     "next": "14.1.4",
     "react": "^18",
     "react-dom": "^18",
@@ -17,6 +21,7 @@
     "sass": "^1.77.6"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

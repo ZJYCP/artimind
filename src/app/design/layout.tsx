@@ -3,9 +3,9 @@ import Nav from '../../components/Nav'
 
 export default function DesignLayout({ children }) {
   return (
-    <div className="design-layout">
+    <div className="flex flex-row h-[100vh]">
       <Nav />
-      <div className="design-content">{children}</div>
+      <div className="chat-content">{children}</div>
     </div>
   )
 }

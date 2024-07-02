@@ -42,23 +42,23 @@ const Home = () => {
           }
         ></div>
       </div>
-      <div>
-        <div className="text-center max-w-[1040px] mx-auto relative px-4 lg:pt-24 pt-[130px]">
-          <h1 className="text-[72px] leading-snug font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#44BCFF] to-[#00FFD1] lg:text-7xl md:text-5xl sm:text-4xl">
+      <div className="w-full h-full flex justify-center items-center">
+        <div className="text-center max-w-[1140px] mx-auto relative px-4 lg:pt-24 pt-[130px]">
+          <h1 className="h-[10rem] text-[72px] leading-snug font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#44BCFF] to-[#00FFD1] lg:text-7xl md:text-5xl sm:text-4xl">
             The Most Powerful, All-in-One AI Writing Copilot.
           </h1>
           <button className="text-[#11229E] shadow-[0px_2px_50px_0px_rgba(0,234,180,0.5)] w-fit mx-auto block text-2xl transition font-bold bg-[#00EAB4] px-12 rounded-full mt-12 py-[14px] hover:bg-[#00D3B6] hover:text-white lg:py-2 lg:text-base lg:mt-6">
-            Start for Free
+            <Link href={'/chat'}>Start for Free</Link>
           </button>
           <div className="flex items-center w-fit mx-auto relative text-[#00EAB4] text-sm pt-6 mb-[320px] 2xl:mb-[300px] lg:mb-[200px] md:mb-[120px] before:i-com--circle-check before:w-4 before:h-4 before:text-secondary before:absolute before:start-0 ps-6">
             No credit card required
           </div>
         </div>
         <img src="/images/test.svg"></img>
-        <div className="hover:cursor-pointer hover:opacity-80 absolute left-1/2 w-[60px] h-[60px] -translate-x-1/2 rounded-full from-[#00FFD1CC] bg-gradient-[242deg] from-20% to-80% to-[#44BCFFCC] bottom-44 lg:bottom-24 md:bottom-12">
+        {/* <div className="hover:cursor-pointer hover:opacity-80 absolute left-1/2 w-[60px] h-[60px] -translate-x-1/2 rounded-full from-[#00FFD1CC] bg-gradient-[242deg] from-20% to-80% to-[#44BCFFCC] bottom-44 lg:bottom-24 md:bottom-12">
           <span className="inline-flex h-20 w-20 rounded-full from-[#00FFD14D] bg-[linear-gradient(242deg,var(--tw-gradient-stops))] from-20% to-80% to-[#44BCFF4D] absolute -left-2.5 -top-2.5 animate-[play_2s_cubic-bezier(0,0,0.2,1)_infinite]"></span>
           <img src="/images/play.svg"></img>
-        </div>
+        </div> */}
       </div>
     </div>
   )

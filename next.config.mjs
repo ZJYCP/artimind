@@ -1,6 +1,17 @@
+import path from 'path'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   transpilePackages: ['@lobehub/ui'],
-};
+  webpack: (config) => {
+    config.resolve.alias['@'] = path.join(process.cwd(), 'src')
+    config.resolve.alias['@img'] = path.join(process.cwd(), 'src/assets/images')
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    })
 
-export default nextConfig;
+    return config
+  },
+}
+
+export default nextConfig
