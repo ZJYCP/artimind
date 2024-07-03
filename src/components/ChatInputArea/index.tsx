@@ -2,22 +2,27 @@ import {
   ActionIcon,
   ChatInputActionBar,
   ChatSendButton,
-  TokenTag,
   ChatInputArea as LobeChatInputArea,
+  TokenTag,
 } from '@lobehub/ui'
-import styles from './index.module.scss'
 import { Eraser, Languages } from 'lucide-react'
+import styles from './index.module.scss'
 import { ChatInputAreaProps } from './interface'
 export default function ChatInputArea(props: ChatInputAreaProps) {
-  const { onInput } = props
+  const { onInput, onSend } = props
   const inputChangeHandler = (input: string) => {
     onInput(input)
   }
+
+  const sendHandler = () => {
+    onSend()
+  }
   return (
     <LobeChatInputArea
-      bottomAddons={<ChatSendButton />}
+      bottomAddons={<ChatSendButton onSend={sendHandler} />}
       className={styles.bgWhite}
       onInput={inputChangeHandler}
+      onSend={sendHandler}
       topAddons={
         <ChatInputActionBar
           leftAddons={
