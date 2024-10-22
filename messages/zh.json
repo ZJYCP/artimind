@@ -1,0 +1,37 @@
+{
+  "common": {
+    "localeSwitch": "切换语言",
+    "en": "English",
+    "zh": "中文",
+    "light": "浅色模式",
+    "dark": "深色模式",
+    "system": "跟随系统",
+    "toggle-theme": "切换主题",
+    "logout": "登出"
+  },
+  "HomePage": {
+    "title": "革新您的搜索体验",
+    "subTitle": "利用人工智能的力量精准找到您想要的。",
+    "searchPlaceholder": "您在寻找什么？",
+    "benefitsTitle": "AI搜索的优势",
+    "benefitsTitle_1": "更快的结果",
+    "benefitsTitle_2": "更高的准确性",
+    "benefitsTitle_3": "个性化洞察",
+    "benefitsDesc_1": "由人工智能驱动的搜索引擎提供更快的结果，帮助您快速有效地找到相关信息。",
+    "benefitsDesc_2": "AI算法在搜索结果中提供更高的准确性，确保您获得准确和最新的信息。",
+    "benefitsDesc_3": "由人工智能驱动的搜索引擎提供个性化的洞察，允许您根据自己的兴趣和偏好接收定制的推荐和建议。",
+    "featureSection": {
+      "title": "功能列表",
+      "featureDescriptions": "通过我们最先进的功能提升您的搜索体验。",
+      "features": {
+        "naturalLanguageProcessing": "自然语言处理",
+        "multiLanguageSupport": "多语言支持",
+        "voiceSearchCapability": "语音搜索能力",
+        "semanticUnderstanding": "语义理解",
+        "realTimeResults": "实时结果",
+        "advancedFilteringOptions": "高级过滤选项"
+      }
+    }
+  },
+  "toggle-theme": "切换主题"
+}
