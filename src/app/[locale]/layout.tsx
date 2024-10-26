@@ -11,7 +11,8 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Artimind',
-  description: 'Artimind - The AI-powered tool for generating and analyzing content',
+  description:
+    'Artimind - The AI-powered tool for generating and analyzing content',
 }
 
 export default async function RootLayout({
@@ -19,7 +20,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const messages = await getMessages();
+  const messages = await getMessages()
 
   return (
     <html lang="en">
@@ -28,7 +29,8 @@ export default async function RootLayout({
           attribute="class"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange>
+          disableTransitionOnChange
+        >
           <NextTopLoader />
           <NextIntlClientProvider messages={messages}>
             <Header></Header>

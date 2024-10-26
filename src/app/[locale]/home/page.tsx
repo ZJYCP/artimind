@@ -6,7 +6,6 @@ import QACom from './QA'
 import SearchCom from './Search'
 import WallofLove from './WallofLove'
 const HomePage = () => {
-
   const isDarkMode = true
   return (
     <div>
@@ -25,6 +24,6 @@ const HomePage = () => {
       </main>
       <FooterCom></FooterCom>
     </div>
-  );
+  )
 }
 export default HomePage
