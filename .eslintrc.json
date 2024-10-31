@@ -2,7 +2,8 @@
   "extends": ["next/core-web-vitals", "prettier"],
   "plugins": ["prettier"],
   "rules": {
-    "prettier/prettier": "error" // 启用 Prettier 规则，并设置错误级别
+    "prettier/prettier": "error", // 启用 Prettier 规则，并设置错误级别
+    "react/no-unescaped-entities": "off"
   },
   "parserOptions": {
     "ecmaVersion": 2020, // 支持的 ECMAScript 版本

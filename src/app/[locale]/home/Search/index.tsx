@@ -1,7 +1,7 @@
 'use client'
 import { Search } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { useRouter } from '../../../../i18n/routing'
+import { useRouter } from '@/i18n/routing'
 
 const SearchCom = () => {
   const t = useTranslations('HomePage')
@@ -20,7 +20,11 @@ const SearchCom = () => {
         <button
           className="absolute right-2 top-2 p-2 bg-blue-600 rounded-full hover:bg-blue-700 transition duration-300"
           onClick={() => {
-            router.push('/search')
+            // 跳转并携带id参数
+            router.push({
+              pathname: '/search',
+              query: { id: '123' },
+            })
           }}
         >
           <Search size={24} />
