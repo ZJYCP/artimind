@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
-
+import { getOpenAI } from '@/lib/aiProvider'
+import { streamText } from 'ai'
+import logger from '@/lib/logger'
 export async function POST(req: NextRequest) {
-  // 打印post body信息
-  const body = await req.json()
-  console.info(body)
-  return NextResponse.json(
-    {
-      message: `来自服务端的GPT回复__${body.message}`,
-    },
-    { status: 200 }
-  )
+  const openai = await getOpenAI()
+  const { messages } = await req.json()
+
+  logger.info(messages)
+  const result = await streamText({
+    model: openai('claude-3-haiku-20240307'),
+    messages,
+  })
+  return result.toDataStreamResponse()
 }

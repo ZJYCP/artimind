@@ -1,8 +1,13 @@
 'use client'
 import { Locale, usePathname, useRouter } from '@/i18n/routing'
-import { Dropdown, MenuProps } from 'antd'
 import { useTranslations } from 'next-intl'
 import { PropsWithChildren, useCallback, useMemo, useTransition } from 'react'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
 
 type Props = PropsWithChildren<{
   defaultValue: string
@@ -26,7 +31,7 @@ export default function LocaleSwitcherSelect({
     })
   }, [])
 
-  const items: MenuProps['items'] = useMemo(() => {
+  const items = useMemo(() => {
     return options.map((item) => ({
       key: item,
       label: (
@@ -38,13 +43,26 @@ export default function LocaleSwitcherSelect({
   }, [options])
 
   return (
-    <Dropdown
-      menu={{ items: items }}
-      disabled={isPending}
-      className={isPending && 'cursor-not-allowed'}
-      arrow
-    >
-      <a className="cursor-pointer">{t(defaultValue)}</a>
-    </Dropdown>
+    <DropdownMenu>
+      <DropdownMenuTrigger>
+        <a className="cursor-pointer">{t(defaultValue)}</a>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        {items.map((item) => {
+          return (
+            <DropdownMenuItem key={item.key}>{item.label}</DropdownMenuItem>
+          )
+        })}
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
+
+  // return (
+  //   <Dropdown
+  //     menu={{ items: items }}
+  //     disabled={isPending}
+  //     className={isPending && 'cursor-not-allowed'}
+  //     arrow
+  //   ></Dropdown>
+  // )
 }

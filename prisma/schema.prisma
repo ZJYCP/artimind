@@ -42,3 +42,17 @@ model SystemSetting {
   id          Int    @id @default(autoincrement())
   adminPrefix String @default("admin")
 }
+
+model SearchRecord {
+  id        Int      @id @default(autoincrement())
+  searchId  String   @unique
+  // 搜索的问题
+  question  String
+  // 是否已完成初次回答
+  finished  Boolean  @default(false)
+  // 聊天数据
+  messages  String
+  createdBy String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
