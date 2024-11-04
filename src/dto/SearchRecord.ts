@@ -1,5 +1,12 @@
 import { Message } from 'ai'
 
+export interface SearchRecordVO {
+  searchId: string
+  messages: Message[]
+  question: string
+  finished: boolean
+}
+
 export class SearchRecordDTO {
   public searchId: string
   public messages: string

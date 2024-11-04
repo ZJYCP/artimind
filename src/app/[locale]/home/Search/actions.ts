@@ -7,13 +7,7 @@ export async function createSearchRecord(question: string) {
   const searchRecord = new SearchRecordDTO({
     searchId: uuid,
     question: question,
-    messages: [
-      {
-        id: uuid,
-        content: question,
-        role: 'user',
-      },
-    ],
+    messages: [],
     createdBy: 'dev-test',
   })
   logger.info('新增一条记录', question)

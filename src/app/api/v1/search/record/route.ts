@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
+import logger from '@/lib/logger'
 
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams
@@ -9,6 +10,8 @@ export async function GET(req: NextRequest) {
       searchId: id,
     },
   })
-  res.messages = JSON.parse(res.messages)
+  res.messages = res.messages ? JSON.parse(res.messages) : null
   return NextResponse.json(res)
 }
+
+export async function PUT(req: NextRequest) {}
