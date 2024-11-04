@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "fix": "next lint --fix",
+    "postinstall": "prisma generate",
     "migrate:dev": "dotenv -e .env -- npx prisma migrate dev --name dev"
   },
   "dependencies": {
