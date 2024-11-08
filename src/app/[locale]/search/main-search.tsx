@@ -4,9 +4,8 @@ import { useChat } from 'ai/react'
 import { useEffect } from 'react'
 import { cross } from '@/lib/cross'
 import { SearchRecordVO } from '@/dto/SearchRecord'
-import { Message } from 'ai'
-import { Button } from '@/components/ui/button'
-
+import remarkGfm from 'remark-gfm'
+import AMarkdown from '@/components/common/markdown'
 async function getSearchRecord(id: string) {
   return await cross<SearchRecordVO>('/api/v1/search/record', {
     data: { id },
@@ -50,7 +49,7 @@ export default function MainSearch() {
         return (
           <div key={message.id ?? Math.random()}>
             {message.role === 'user' ? 'User' : 'AI'}
-            {message.content}
+            <AMarkdown content={message.content}></AMarkdown>
           </div>
         )
       })}
