@@ -5,7 +5,9 @@ const FooterCom = () => {
         <div className="flex flex-wrap justify-between">
           <div className="w-full md:w-1/4 mb-8 md:mb-0">
             <h3 className="text-xl font-bold mb-4">AI Search</h3>
-            <p className="text-gray-400">Empowering your search with artificial intelligence.</p>
+            <p className="text-gray-400">
+              Empowering your search with artificial intelligence.
+            </p>
           </div>
           {['Product', 'Company', 'Resources', 'Legal'].map((category) => (
             <div key={category} className="w-full md:w-1/6 mb-8 md:mb-0">
@@ -13,7 +15,10 @@ const FooterCom = () => {
               <ul className="space-y-2">
                 {['Link 1', 'Link 2', 'Link 3'].map((link) => (
                   <li key={link}>
-                    <a href="#" className="text-gray-400 hover:text-white transition duration-300">
+                    <a
+                      href="#"
+                      className="text-gray-400 hover:text-white transition duration-300"
+                    >
                       {link}
                     </a>
                   </li>

@@ -1,10 +1,13 @@
-import createNextIntlPlugin from 'next-intl/plugin';
-import path from 'path';
- 
-const withNextIntl = createNextIntlPlugin();
+import createNextIntlPlugin from 'next-intl/plugin'
+import path from 'path'
+
+const withNextIntl = createNextIntlPlugin()
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ['@lobehub/ui'],
+  reactStrictMode: false,
+  experimental: {
+    serverComponentsExternalPackages: ['pino'],
+  },
   webpack: (config) => {
     config.resolve.alias['@'] = path.join(process.cwd(), 'src')
     config.resolve.alias['@img'] = path.join(process.cwd(), 'src/assets/images')

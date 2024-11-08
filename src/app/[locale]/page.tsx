@@ -1,8 +1,6 @@
 import Home from './home/page'
 
-const App = (
-
-) => {
+const App = () => {
   // 获取路由地址
 
   return (

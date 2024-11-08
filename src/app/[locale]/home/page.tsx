@@ -1,12 +1,11 @@
-import FooterCom from '../../../components/Footer'
 import Benefits from './Benefits'
 import Feature from './Feature'
 import HowItWorks from './HowItWorks'
 import QACom from './QA'
 import SearchCom from './Search'
 import WallofLove from './WallofLove'
+import FooterCom from '@/components/Footer'
 const HomePage = () => {
-
   const isDarkMode = true
   return (
     <div>
@@ -25,6 +24,6 @@ const HomePage = () => {
       </main>
       <FooterCom></FooterCom>
     </div>
-  );
+  )
 }
 export default HomePage

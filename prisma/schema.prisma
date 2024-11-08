@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  sub       String   @unique // 第三方平台的唯一id
+  platform  String // 第三方平台标识，如：github google
+  username  String
+  avatar    String
+  email     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// 大模型api配置
+model ApiSetting {
+  id          Int      @id @default(autoincrement())
+  name        String
+  // api-key
+  key         String
+  // 代理url地址
+  register    String
+  // 描述
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SystemSetting {
+  id          Int    @id @default(autoincrement())
+  adminPrefix String @default("admin")
+}
+
+model SearchRecord {
+  id        Int      @id @default(autoincrement())
+  searchId  String   @unique
+  // 搜索的问题
+  question  String
+  // 是否已完成初次回答
+  finished  Boolean  @default(false)
+  // 聊天数据
+  messages  String
+  createdBy String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
