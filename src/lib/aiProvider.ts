@@ -7,7 +7,11 @@ declare global {
 }
 export async function fetchApiSetting() {
   if (!global.apiSetting) {
-    global.apiSetting = await prisma.apiSetting.findMany()
+    global.apiSetting = await prisma.apiSetting.findMany({
+      where: {
+        enabled: true,
+      },
+    })
   }
   return global.apiSetting
 }
@@ -21,10 +25,9 @@ export async function createLanguageModel(params: OpenAIProviderSettings) {
     ...params,
     apiKey: settings[0].key,
     baseURL: `${settings[0].register}/v1`,
-  })
+  })(settings[0].name)
 }
 
 export async function getOpenAI() {
-  const openai = await createLanguageModel({})
-  return openai
+  return await createLanguageModel({})
 }

@@ -7,10 +7,10 @@ export async function vanillaAnswer(
   messages: Message[],
   onStream?: (...args: any[]) => void
 ) {
-  const openai = await getOpenAI()
+  const vanillaModel = await getOpenAI()
   let fullAnswer = ''
   const result = await streamText({
-    model: openai('gpt-4o-mini'),
+    model: vanillaModel,
     messages: messages,
   })
   // 流式输出结果
