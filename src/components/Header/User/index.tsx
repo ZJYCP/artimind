@@ -9,6 +9,9 @@ import {
 import { auth, signIn, signOut } from '@/lib/auth'
 import { User } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
+import { useSignInModal } from '@/hooks/useSignInModal'
+import SignInButton from '@/components/layout/SignInButton'
+import SignOutButton from '@/components/Header/User/SignOutButton'
 
 export default async function UserAvatar() {
   const session = await auth()
@@ -29,30 +32,22 @@ export default async function UserAvatar() {
         <DropdownMenuContent>
           <DropdownMenuItem>My Account</DropdownMenuItem>
           <DropdownMenuItem className="cursor-pointer">
-            <form
-              action={async () => {
-                'use server'
-                await signOut()
-              }}
-            >
-              <button className="w-full h-full">{t('logout')}</button>
-            </form>
+            <SignOutButton></SignOutButton>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     )
   } else {
     return (
-      <form
-        action={async () => {
-          'use server'
-          await signIn()
-        }}
-      >
-        <Button className="rounded-full">
-          <User size={24} />
-        </Button>
-      </form>
+      <SignInButton></SignInButton>
+      // <form
+      //   action={async () => {
+      //     'use server'
+      //     await signIn()
+      //   }}
+      // >
+      //
+      // </form>
     )
   }
 }

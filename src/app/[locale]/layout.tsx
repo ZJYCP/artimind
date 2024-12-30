@@ -8,6 +8,8 @@ import NextTopLoader from 'nextjs-toploader'
 import './globals.scss'
 import { routing } from '@/i18n/routing'
 import { notFound } from 'next/navigation'
+import SignInPanel from '@/components/layout/SignInPanel'
+import { SessionProvider } from 'next-auth/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -41,8 +43,11 @@ export default async function LocaleLayout({
           disableTransitionOnChange
         >
           <NextIntlClientProvider messages={messages}>
-            <Header></Header>
-            {children}
+            <SessionProvider>
+              <Header></Header>
+              {children}
+              <SignInPanel></SignInPanel>
+            </SessionProvider>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

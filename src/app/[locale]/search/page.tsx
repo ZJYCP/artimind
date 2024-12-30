@@ -1,5 +1,5 @@
-import MainSearch from '@/app/[locale]/search/main-search'
+import { notFound } from 'next/navigation'
 
 export default function Search({ params }) {
-  return <MainSearch></MainSearch>
+  return notFound()
 }

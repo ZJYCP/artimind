@@ -2,20 +2,32 @@
 import { Search } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useRouter } from '@/i18n/routing'
-import { createSearchRecord } from './actions'
 import { useState } from 'react'
+import { Search as SearchVO } from '@/lib/bizTypes'
+import { useSession } from 'next-auth/react'
+import { useSignInModal } from '@/hooks/useSignInModal'
+import { useSearchStore } from '@/store/SearchStore'
 
 const SearchCom = () => {
   const t = useTranslations('HomePage')
   const [question, setQuestion] = useState('')
   const router = useRouter()
+  const { data: session } = useSession()
+  const signInModal = useSignInModal()
+  const addSearch = useSearchStore((state) => state.addSearch)
 
   const handleSubmit = async () => {
-    const questionId = await createSearchRecord(question)
+    const userId = session?.user?.id
+    if (!userId) {
+      signInModal.onOpen()
+      return
+    }
+    const questionId = crypto.randomUUID()
+    const newSearch = new SearchVO(questionId, question, userId)
+    addSearch(newSearch)
     // 跳转并携带id参数
     router.push({
-      pathname: '/search',
-      query: { id: questionId },
+      pathname: `/search/${questionId}`,
     })
   }
 
