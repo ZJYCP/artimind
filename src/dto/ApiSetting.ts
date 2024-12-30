@@ -4,6 +4,7 @@ export interface ApiSettingDTO {
   key: string
   register: string
   description: string
+  enabled: boolean
   createdAt: Date
   updatedAt: Date
 }

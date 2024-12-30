@@ -93,6 +93,7 @@ model ApiSetting {
   register    String
   // 描述
   description String
+  enabled     Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
