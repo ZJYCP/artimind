@@ -1,13 +1,18 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { fetchEventSource } from '@microsoft/fetch-event-source'
 
-function useSSE(url, options = {}) {
+function useSSE() {
   const [data, setData] = useState(null) // 当前接收的数据
   const [error, setError] = useState(null) // 错误信息
   const [isOpen, setIsOpen] = useState(false) // SSE 状态
   const controllerRef = useRef(null) // 用于手动关闭连接
 
-  useEffect(() => {
+  const start = useCallback((url, options = {}) => {
+    // 如果连接已存在，先关闭
+    if (controllerRef.current) {
+      controllerRef.current.abort()
+    }
+
     // 初始化 AbortController
     const controller = new AbortController()
     controllerRef.current = controller
@@ -15,9 +20,14 @@ function useSSE(url, options = {}) {
     const { signal } = controller
 
     setIsOpen(true)
+    console.log(options)
 
-    // 使用 fetchEventSource 发起 SSE 请求
     fetchEventSource(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'text/event-stream',
+      },
       ...options,
       signal,
       onopen: async () => {
@@ -43,23 +53,17 @@ function useSSE(url, options = {}) {
         setIsOpen(false)
       },
     })
+  }, [])
 
-    // 清理逻辑
-    return () => {
-      controller.abort()
+  const close = useCallback(() => {
+    if (controllerRef.current) {
+      controllerRef.current.abort()
+      setIsOpen(false)
       console.log('SSE connection manually closed')
     }
-  }, [url, options])
+  }, [])
 
-  return {
-    data,
-    error,
-    isOpen,
-    close: () => {
-      controllerRef.current?.abort()
-      setIsOpen(false)
-    },
-  }
+  return { data, error, isOpen, start, close }
 }
 
 export default useSSE
