@@ -5,6 +5,7 @@ import { Message, Search, User } from '@/lib/bizTypes'
 import { fetchEventSource } from '@microsoft/fetch-event-source'
 import AMarkdown from '@/components/common/markdown'
 import useSSE from '@/hooks/useSSE'
+import { createNewMessage } from '@/lib/llm/utils'
 
 interface MainSearchProps {
   initSearchInfo: Search | null
@@ -24,6 +25,10 @@ function MainSearch(props: MainSearchProps) {
   } = useSearchStore()
 
   const messageIndex = useRef<number>(-1)
+
+  /**
+   * 当搜索id在数据库中不存在，即第一次搜索时，主动发起请求
+   */
   useEffect(() => {
     // initSearchInfo为空，则表明是初次提出问题，需要发起请求
     if (!initSearchInfo) {
@@ -55,17 +60,6 @@ function MainSearch(props: MainSearchProps) {
         updateMessage(answer)
       },
     })
-  }
-
-  const createNewMessage = (originSearch: Search): Message[] => {
-    return [
-      {
-        id: originSearch.id,
-        content: originSearch.title,
-        role: 'user',
-        attachments: [],
-      },
-    ]
   }
 
   const updateMessage = (messageContent: string) => {
@@ -103,7 +97,7 @@ function MainSearch(props: MainSearchProps) {
   const messages = activeSearch?.messages || []
 
   return (
-    <div>
+    <>
       {messages.map((message) => {
         return (
           <div key={message.id}>
@@ -112,7 +106,7 @@ function MainSearch(props: MainSearchProps) {
           </div>
         )
       })}
-    </div>
+    </>
   )
 }
 

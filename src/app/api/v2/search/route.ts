@@ -31,7 +31,16 @@ export async function POST(req: NextRequest) {
             ],
           })
         } else {
-          logger('已经有了，need upadte' + '')
+          console.log('已经有了，need upadte' + '')
+          await SearchService.updateSearchMessage(searchRecord.id, [
+            ...messages,
+            {
+              id: generateUUID(),
+              content: fullAnswer,
+              role: 'assistant',
+              attachments: [],
+            },
+          ])
         }
       },
       cancel() {

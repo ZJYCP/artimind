@@ -10,6 +10,7 @@ import { routing } from '@/i18n/routing'
 import { notFound } from 'next/navigation'
 import SignInPanel from '@/components/layout/SignInPanel'
 import { SessionProvider } from 'next-auth/react'
+import { cn } from '@/lib/utils'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -34,7 +35,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={cn(inter.className, 'h-screen flex flex-col')}>
         <NextTopLoader />
         <ThemeProvider
           attribute="class"

@@ -15,6 +15,33 @@ class SearchService {
       logger.error(e)
     }
   }
+
+  static async updateSearchMessage(id, messages) {
+    try {
+      return await prisma.search.update({
+        where: {
+          id: id,
+        },
+        data: {
+          messages,
+        },
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  static async updateSearch(data) {
+    try {
+      return await prisma.search.update({
+        where: {
+          id: data.id,
+        },
+        data,
+      })
+    } catch (e) {
+      logger.error(e)
+    }
+  }
 }
 
 export default SearchService

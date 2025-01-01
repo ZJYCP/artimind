@@ -11,7 +11,6 @@ interface MarkdownProps {
 }
 function AMarkdown(params: MarkdownProps) {
   const { content } = params
-  console.log(content)
   return (
     <ReactMarkdown
       remarkPlugins={[RemarkGfm, remarkMath]}
