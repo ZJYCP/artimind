@@ -24,7 +24,7 @@ const Sidebar = () => {
   }
 
   const loginClick = () => {
-    if (session?.user?.id) {
+    if (!session?.user?.id) {
       signInModel.onOpen()
     }
   }
@@ -57,7 +57,10 @@ const Sidebar = () => {
         </div>
 
         {/* Login Button */}
-        <button onClick={expandSidebar} className="p-4 flex items-center">
+        <button
+          onClick={loginClick}
+          className="p-4 flex hover:bg-amber-50 dark:hover:bg-gray-500 items-center"
+        >
           {session?.user?.id ? (
             <Avatar className="h-9 w-9">
               <AvatarImage src={session?.user.image} alt="user avatar" />
@@ -72,15 +75,11 @@ const Sidebar = () => {
 
         {/* Add Search Button */}
         <button
-          onClick={expandSidebar}
-          className="p-4 hover:bg-amber-100  flex items-center"
+          onClick={navigateToNewSearch}
+          className="p-4 hover:bg-amber-50 dark:hover:bg-gray-500  flex items-center"
         >
-          <Search className="w-6 h-6 mr-2" onClick={navigateToNewSearch} />
-          {!isCollapsed && (
-            <span className="sidebar-text" onClick={navigateToNewSearch}>
-              新增搜索
-            </span>
-          )}
+          <Search className="w-6 h-6 mr-2" />
+          {!isCollapsed && <span className="sidebar-text">新增搜索</span>}
         </button>
 
         {/* Search History */}

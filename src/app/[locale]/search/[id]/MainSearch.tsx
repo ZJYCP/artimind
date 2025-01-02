@@ -1,11 +1,12 @@
 'use client'
 import { useSearchStore } from '@/store/SearchStore'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Message, Search, User } from '@/lib/bizTypes'
 import { fetchEventSource } from '@microsoft/fetch-event-source'
 import AMarkdown from '@/components/common/markdown'
 import useSSE from '@/hooks/useSSE'
 import { createNewMessage } from '@/lib/llm/utils'
+import { cn } from '@/lib/utils'
 
 interface MainSearchProps {
   initSearchInfo: Search | null
@@ -99,9 +100,16 @@ function MainSearch(props: MainSearchProps) {
   return (
     <>
       {messages.map((message) => {
+        const isUser = message.role === 'user'
         return (
-          <div key={message.id}>
-            {message.role === 'user' ? 'User' : 'AI'}
+          <div
+            key={message.id}
+            className={cn(
+              'flex flex-col py-4',
+              isUser ? 'items-end' : 'items-start'
+            )}
+          >
+            {isUser ? 'User' : 'AI'}
             <AMarkdown content={message.content}></AMarkdown>
           </div>
         )

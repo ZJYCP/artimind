@@ -8,6 +8,8 @@ import {
 } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
+import { useSession } from 'next-auth/react'
+import { useSignInModal } from '@/hooks/useSignInModal'
 
 interface InputAreaProps {
   question: string
@@ -16,9 +18,27 @@ interface InputAreaProps {
 }
 function InputArea(props: InputAreaProps) {
   const { question, onQuestionInput, onSend } = props
+  const { data: session } = useSession()
+  const signInModal = useSignInModal()
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     onQuestionInput(e.target.value)
+  }
+
+  const keyDownHandler = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault() // 阻止换行
+      beforeSendHandler()
+    }
+  }
+
+  const beforeSendHandler = () => {
+    if (session?.user) {
+      onSend()
+      onQuestionInput('')
+    } else {
+      signInModal.onOpen()
+    }
   }
   return (
     <div className="w-full max-w-2xl bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm p-4 space-y-4">
@@ -29,6 +49,7 @@ function InputArea(props: InputAreaProps) {
         rows={3}
         value={question}
         onInput={handleInputChange}
+        onKeyDown={keyDownHandler}
       />
       {/* 下方操作区域 */}
       <div className="flex items-center justify-between">
@@ -61,7 +82,7 @@ function InputArea(props: InputAreaProps) {
         {/* 右侧发送按钮 */}
         <Button
           className="bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 dark:hover:bg-blue-600 px-6 py-2 rounded-md"
-          onClick={onSend}
+          onClick={beforeSendHandler}
         >
           发送
         </Button>
