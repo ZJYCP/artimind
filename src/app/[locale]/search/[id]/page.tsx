@@ -20,7 +20,7 @@ async function SearchPage(props: SearchPageProps) {
     },
   })
   return (
-    <section className="flex-1 overflow-y-auto px-16">
+    <section className="flex-1 overflow-y-auto px-16 pb-[160px]">
       <MainSearch
         searchId={id}
         user={session.user}

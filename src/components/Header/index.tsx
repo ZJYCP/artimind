@@ -5,7 +5,7 @@ import UserAvatar from './User'
 
 export default function Header() {
   return (
-    <header className="container mx-auto px-4 py-6 flex justify-between items-center h-16">
+    <header className="w-full mx-auto px-8  py-6 flex justify-between items-center h-16 border-b border-amber-100">
       <Link href={'/'}>
         <div className="text-2xl font-bold cursor-pointer">Artimind</div>
       </Link>

@@ -33,18 +33,20 @@ const SearchCom = () => {
 
   return (
     <section className="text-center py-20">
-      <h1 className="text-5xl font-bold mb-6 text-blue-300">{t('title')}</h1>
-      <p className="text-xl mb-8 text-blue-200">{t('subTitle')}</p>
+      <h1 className="text-5xl font-bold mb-6 dark:text-blue-300">
+        {t('title')}
+      </h1>
+      <p className="text-xl mb-8 dark:text-blue-200">{t('subTitle')}</p>
       <form className="max-w-2xl mx-auto relative" action={handleSubmit}>
         <input
           type="text"
           value={question}
           onInput={(e) => setQuestion(e.currentTarget.value)}
           placeholder={t('searchPlaceholder')}
-          className={`w-full py-4 px-6 rounded-full text-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500`}
+          className={`w-full py-4 px-6 rounded-full text-lg dark:bg-gray-800  placeholder-gray-400 outline outline-1 dark:outline-none focus:outline-none focus:ring-2 focus:ring-blue-500`}
         />
         <button
-          className="absolute right-2 top-2 p-2 bg-blue-600 rounded-full hover:bg-blue-700 transition duration-300"
+          className="absolute right-2 top-2 p-2 dark:bg-blue-600 rounded-full hover:bg-blue-700 transition duration-300"
           type={'submit'}
         >
           <Search size={24} />

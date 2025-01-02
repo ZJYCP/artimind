@@ -11,10 +11,16 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { useTranslations } from 'next-intl'
+import Cookies from 'js-cookie'
 
 export default function ThemeToggle() {
   const { setTheme } = useTheme()
   const t = useTranslations('common')
+
+  const onThemeChange = (theme: string) => {
+    setTheme(theme)
+    Cookies.set('theme', theme, { expires: 365 * 100 })
+  }
 
   return (
     <DropdownMenu>
@@ -26,13 +32,13 @@ export default function ThemeToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme('light')}>
+        <DropdownMenuItem onClick={() => onThemeChange('light')}>
           {t('light')}
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('dark')}>
+        <DropdownMenuItem onClick={() => onThemeChange('dark')}>
           {t('dark')}
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('system')}>
+        <DropdownMenuItem onClick={() => onThemeChange('system')}>
           {t('system')}
         </DropdownMenuItem>
       </DropdownMenuContent>

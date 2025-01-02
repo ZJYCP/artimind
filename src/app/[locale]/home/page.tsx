@@ -5,14 +5,13 @@ import QACom from './QA'
 import SearchCom from './Search'
 import WallofLove from './WallofLove'
 import FooterCom from '@/components/Footer'
-const HomePage = () => {
-  const isDarkMode = true
+const HomePage = async () => {
   return (
     <div>
-      <main className="container mx-auto px-4">
+      <main className={`container mx-auto px-4 `}>
         <SearchCom></SearchCom>
 
-        <Benefits isDarkMode={isDarkMode}></Benefits>
+        <Benefits></Benefits>
 
         <HowItWorks></HowItWorks>
 
