@@ -105,12 +105,24 @@ function MainSearch(props: MainSearchProps) {
           <div
             key={message.id}
             className={cn(
-              'flex flex-col py-4',
-              isUser ? 'items-end' : 'items-start'
+              'flex w-full py-4',
+              isUser ? 'justify-end' : 'justify-start'
             )}
           >
-            {isUser ? 'User' : 'AI'}
-            <AMarkdown content={message.content}></AMarkdown>
+            <div
+              className={cn(
+                'px-6 py-3 rounded-lg shadow-lg',
+                isUser
+                  ? 'bg-blue-500 text-white rounded-br-none'
+                  : 'bg-gray-200 text-gray-800 rounded-bl-none',
+                'max-w-[75%] sm:max-w-[60%] lg:max-w-[50%]' // 限制宽度的自适应
+              )}
+            >
+              <span className="block text-sm font-medium mb-1">
+                {isUser ? 'You' : 'AI'}
+              </span>
+              <AMarkdown content={message.content}></AMarkdown>
+            </div>
           </div>
         )
       })}
