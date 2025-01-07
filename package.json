@@ -14,6 +14,8 @@
   "dependencies": {
     "@ai-sdk/openai": "^0.0.70",
     "@auth/prisma-adapter": "^2.7.4",
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
     "@hookform/resolvers": "^3.9.1",
     "@microsoft/fetch-event-source": "^2.0.1",
     "@prisma/client": "5.21.1",
@@ -32,7 +34,9 @@
     "ai": "^3.4.30",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "husky": "^9.1.7",
     "js-cookie": "^3.0.5",
+    "lint-staged": "^15.3.0",
     "lucide-react": "^0.400.0",
     "next": "14.1.4",
     "next-auth": "5.0.0-beta.25",
@@ -61,6 +65,8 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
+    "commitizen": "^4.3.1",
+    "cz-git": "^1.11.0",
     "eslint": "^8",
     "eslint-config-next": "14.1.4",
     "eslint-config-prettier": "^9.1.0",
@@ -70,5 +76,18 @@
     "prisma": "^5.21.1",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "next lint --fix"
+    ],
+    "**/*.{css,scss,md}": [
+      "prettier --write"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-git"
+    }
   }
 }

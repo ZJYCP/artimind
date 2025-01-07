@@ -8,3 +8,11 @@ export function cn(...inputs: ClassValue[]) {
 export function generateUUID() {
   return crypto.randomUUID()
 }
+
+/**
+ * Sanitize URL
+ * @param url
+ */
+export function sanitizeUrl(url: string): string {
+  return url.replace(/\s+/g, '%20')
+}
