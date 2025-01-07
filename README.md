@@ -8,7 +8,7 @@
 
 > Artimind--An AI-powered search engine
 
-### ✨ [Demo](artimind.top)
+### ✨ [Demo](https://artimind.top)
 
 ## Install
 
