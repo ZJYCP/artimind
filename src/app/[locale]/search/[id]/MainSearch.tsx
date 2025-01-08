@@ -7,6 +7,7 @@ import AMarkdown from '@/components/common/markdown'
 import useSSE from '@/hooks/useSSE'
 import { createNewMessage } from '@/lib/llm/utils'
 import { cn } from '@/lib/utils'
+import { Spinner } from '@/components/ui/spinner'
 
 interface MainSearchProps {
   initSearchInfo: Search | null
@@ -24,6 +25,8 @@ function MainSearch(props: MainSearchProps) {
     setActiveById,
     updateActiveSearch,
   } = useSearchStore()
+
+  const [searchStatus, setSearchStatus] = useState<null | string>(null)
 
   const messageIndex = useRef<number>(-1)
 
@@ -57,8 +60,14 @@ function MainSearch(props: MainSearchProps) {
         searchRecord: search,
       }),
       onmessage: (event) => {
-        const { answer } = JSON.parse(event.data)
-        updateMessage(answer)
+        const { answer, status } = JSON.parse(event.data)
+        if (answer) {
+          setSearchStatus(null)
+          updateMessage(answer)
+        }
+        if (status) {
+          setSearchStatus(status)
+        }
       },
     })
   }
@@ -99,7 +108,7 @@ function MainSearch(props: MainSearchProps) {
 
   return (
     <>
-      {messages.map((message) => {
+      {messages.map((message, index) => {
         const isUser = message.role === 'user'
         return (
           <div
@@ -115,10 +124,17 @@ function MainSearch(props: MainSearchProps) {
                 isUser
                   ? 'bg-blue-500 text-white rounded-br-none'
                   : 'bg-gray-200 text-gray-800 rounded-bl-none',
+                'dark:bg-gray-700 dark:text-gray-200', // 深色模式适配
                 'max-w-[75%] sm:max-w-[60%] lg:max-w-[50%]' // 限制宽度的自适应
               )}
             >
-              <span className="block text-sm font-medium mb-1">
+              <span
+                className={cn(
+                  'block text-sm font-medium mb-1',
+                  isUser ? 'text-white' : 'text-gray-600',
+                  'dark:text-gray-400' // 深色模式下的发件人标识颜色
+                )}
+              >
                 {isUser ? 'You' : 'AI'}
               </span>
               <AMarkdown content={message.content}></AMarkdown>
@@ -126,6 +142,12 @@ function MainSearch(props: MainSearchProps) {
           </div>
         )
       })}
+      {!!searchStatus && (
+        <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+          <Spinner className="h-4 w-4 text-blue-500" />
+          {searchStatus}
+        </div>
+      )}
     </>
   )
 }

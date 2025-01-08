@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
   try {
     const readableStream = new ReadableStream({
       async start(controller) {
-        const fullAnswer = await vanillaAnswer(
+        const { fullAnswer, textSources } = await vanillaAnswer(
           messages,
           streamController(controller)
         )
@@ -26,6 +26,7 @@ export async function POST(req: NextRequest) {
                 id: generateUUID(),
                 content: fullAnswer,
                 role: 'assistant',
+                textSources: textSources,
                 attachments: [],
               },
             ],
@@ -38,6 +39,7 @@ export async function POST(req: NextRequest) {
               id: generateUUID(),
               content: fullAnswer,
               role: 'assistant',
+              textSources: textSources,
               attachments: [],
             },
           ])

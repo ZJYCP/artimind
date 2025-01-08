@@ -1,9 +1,11 @@
+import { ImageSource, TextSource } from '@/lib/bizTypes'
+
 /**
  * 搜索引擎结果
  */
 export type SearchResults = {
-  images: SearchResultImage[]
-  results: SearchResultItem[]
+  images: ImageSource[]
+  results: TextSource[]
   number_of_results?: number
   query: string
 }
@@ -17,9 +19,3 @@ export type SearchResultImage =
       description: string
       number_of_results?: number
     }
-
-export type SearchResultItem = {
-  title: string
-  url: string
-  content: string
-}
