@@ -6,6 +6,9 @@ import { sanitizeUrl } from '@/lib/utils'
 
 export async function tavilySearch(
   query: string,
+  options: {
+    onStream?: (...args: any[]) => void
+  } = {},
   maxResults: number = 10,
   searchDepth: 'basic' | 'advanced' = 'basic',
   includeDomains: string[] = [],
@@ -56,7 +59,6 @@ export async function tavilySearch(
             image.description !== ''
         )
     : data.images.map((url: string) => sanitizeUrl(url))
-
   return {
     ...data,
     images: processedImages,

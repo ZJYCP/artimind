@@ -15,7 +15,7 @@ export type User = Partial<CompleteUser>
  */
 export interface Message {
   id: string
-  role: 'system' | 'user' | 'assistant' | 'tool'
+  role: 'system' | 'user' | 'assistant'
   content: string
   createdAt?: Date
   updatedAt?: Date
@@ -61,4 +61,27 @@ export class Search {
     this.title = title
     this.createdBy = createdBy
   }
+}
+
+export interface TextSource {
+  title: string
+  url: string
+  content: string
+  type?: string
+}
+
+export interface ImageSource {
+  title: string
+  url: string
+  image: string
+  type?: string
+}
+
+export interface VideoSource {
+  title: string
+  id: string
+}
+
+export interface StreamHandler {
+  (message: string | null, done: boolean): void
 }
