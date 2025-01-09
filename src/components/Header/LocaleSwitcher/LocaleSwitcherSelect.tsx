@@ -34,23 +34,25 @@ export default function LocaleSwitcherSelect({
   const items = useMemo(() => {
     return options.map((item) => ({
       key: item,
-      label: (
-        <a className="cursor-pointer" onClick={() => onSelectChange(item)}>
-          {t(item)}
-        </a>
-      ),
+      label: <a className="cursor-pointer">{t(item)}</a>,
     }))
   }, [options])
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <a className="cursor-pointer">{t(defaultValue)}</a>
+        <a>{t(defaultValue)}</a>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         {items.map((item) => {
           return (
-            <DropdownMenuItem key={item.key}>{item.label}</DropdownMenuItem>
+            <DropdownMenuItem
+              className="cursor-pointer"
+              key={item.key}
+              onClick={() => onSelectChange(item.key)}
+            >
+              {item.label}
+            </DropdownMenuItem>
           )
         })}
       </DropdownMenuContent>
