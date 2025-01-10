@@ -42,3 +42,26 @@ export function getHistory(isPro: boolean, messages: any[]) {
     })
     .join('\n')
 }
+
+import { randomBytes, createHash } from 'crypto'
+
+/**
+ * 生成盐和哈希密码
+ * @param text 要加密的文本
+ * @param salt 可选的盐，若未提供，则会自动生成
+ * @returns 包含盐和哈希值的对象
+ */
+export function saltAndHashText(text: string, salt?: string) {
+  // 如果未提供盐，则生成随机盐
+  const generatedSalt = salt || randomBytes(16).toString('hex')
+
+  // 使用 SHA-256 算法生成哈希
+  const hash = createHash('sha256')
+    .update(text + generatedSalt)
+    .digest('hex')
+
+  return {
+    salt: generatedSalt,
+    hash,
+  }
+}

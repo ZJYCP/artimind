@@ -4,9 +4,12 @@
  */
 import NextAuth from 'next-auth'
 import Github from 'next-auth/providers/github'
+import Credentials from 'next-auth/providers/credentials'
 import { NODE_ENV } from '@/lib/env'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import prisma from '@/lib/prisma'
+import { saltAndHashText } from '@/lib/utils'
+import { verifyUser } from '@/app/api/v1/register/service'
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -17,6 +20,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     Github({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
+    }),
+    Credentials({
+      credentials: {
+        email: { label: 'Email', type: 'text' },
+        password: { label: 'Password', type: 'password' },
+      },
+      authorize: async (credentials: { email: string; password: string }) => {
+        let user = null
+
+        user = await verifyUser(credentials.email, credentials.password)
+
+        return user
+      },
     }),
   ],
   pages: {

@@ -19,6 +19,8 @@ model User {
   email         String?         @unique
   emailVerified DateTime?
   image         String?
+  salt          String?
+  passwordHash  String?
   accounts      Account[]
   sessions      Session[]
   // Optional for WebAuthn support
