@@ -11,6 +11,7 @@ import { notFound } from 'next/navigation'
 import SignInPanel from '@/components/layout/SignInPanel'
 import { SessionProvider } from 'next-auth/react'
 import { cn } from '@/lib/utils'
+import { AlertProvider } from '@/components/ui/alertProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -46,9 +47,11 @@ export default async function LocaleLayout({
         >
           <NextIntlClientProvider messages={messages}>
             <SessionProvider>
-              <Header></Header>
-              {children}
-              <SignInPanel></SignInPanel>
+              <AlertProvider>
+                <Header></Header>
+                {children}
+                <SignInPanel></SignInPanel>
+              </AlertProvider>
             </SessionProvider>
           </NextIntlClientProvider>
         </ThemeProvider>
