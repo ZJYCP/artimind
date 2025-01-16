@@ -43,7 +43,7 @@ const Sidebar = () => {
       >
         {/* Header */}
         <div className="p-4 flex items-center justify-between border-b ">
-          {!isCollapsed && <h1 className="text-xl font-bold">Logo</h1>}
+          {!isCollapsed && <h1 className="text-xl font-bold"> </h1>}
           <button
             onClick={toggleSidebar}
             className="text-gray-400 hover:text-white focus:outline-none"
